@@ -52,13 +52,21 @@
 		84552A55207EFCAE00CE87D0 /* taskOrganizer */ = {
 			isa = PBXGroup;
 			children = (
+				84552A68207EFD2E00CE87D0 /* FirstViewController.swift */,
+				84552A6A207F00E700CE87D0 /* Supporting Files */,
+				84552A62207EFCAE00CE87D0 /* Info.plist */,
+			);
+			path = taskOrganizer;
+			sourceTree = "<group>";
+		};
+		84552A6A207F00E700CE87D0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
 				84552A56207EFCAE00CE87D0 /* AppDelegate.swift */,
 				84552A5D207EFCAE00CE87D0 /* Assets.xcassets */,
 				84552A5F207EFCAE00CE87D0 /* LaunchScreen.storyboard */,
-				84552A62207EFCAE00CE87D0 /* Info.plist */,
-				84552A68207EFD2E00CE87D0 /* FirstViewController.swift */,
 			);
-			path = taskOrganizer;
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
