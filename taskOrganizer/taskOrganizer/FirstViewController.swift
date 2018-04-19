@@ -8,9 +8,12 @@
 
 import UIKit
 
-class FirstViewController: UIViewController {
+class FirstViewController: UIViewController, FirstViewControllerDelegate {
     
-    
+    func tempProtocolFunction(){
+        print("tempProtocolFunction executed")
+    }
+
     func setupNavigationBar(){
         self.navigationItem.title = "HELLO WORLD"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "*RIGHT*", style: .plain, target: self, action: #selector(handleRight))
@@ -21,18 +24,16 @@ class FirstViewController: UIViewController {
       super.viewDidLoad()
         view.backgroundColor = UIColor.yellow
         setupNavigationBar()
-
     }
     
     
     @objc func handleRight(){
-        print("click**")
+        let myNavController = UINavigationController(rootViewController: SecondViewController())
+        present(myNavController, animated: true)
     }
 
     @objc func handleLeft(){
-        print("**click")
+        let myNavController = UINavigationController(rootViewController: SettingsViewController())
+        present(myNavController, animated: true)
     }
-
-    
-    
 }
