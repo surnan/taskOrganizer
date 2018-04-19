@@ -15,6 +15,7 @@
 		84D9C59A2086C9EE0072EEED /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D9C5992086C9EE0072EEED /* SettingsViewController.swift */; };
 		84D9C59C208821680072EEED /* UIColor+theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D9C59B208821680072EEED /* UIColor+theme.swift */; };
 		84D9C59E208824BA0072EEED /* UINavigationController_Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D9C59D208824BA0072EEED /* UINavigationController_Ext.swift */; };
+		84D9C5A1208826280072EEED /* DailyTaskDefinitionFile.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84D9C59F208826280072EEED /* DailyTaskDefinitionFile.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		84D9C5992086C9EE0072EEED /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		84D9C59B208821680072EEED /* UIColor+theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+theme.swift"; sourceTree = "<group>"; };
 		84D9C59D208824BA0072EEED /* UINavigationController_Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationController_Ext.swift; sourceTree = "<group>"; };
+		84D9C5A0208826280072EEED /* DailyTask.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DailyTask.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,7 +46,6 @@
 		84552A4A207EFCAD00CE87D0 = {
 			isa = PBXGroup;
 			children = (
-				84D9C59D208824BA0072EEED /* UINavigationController_Ext.swift */,
 				84552A55207EFCAE00CE87D0 /* taskOrganizer */,
 				84552A54207EFCAE00CE87D0 /* Products */,
 			);
@@ -61,12 +62,11 @@
 		84552A55207EFCAE00CE87D0 /* taskOrganizer */ = {
 			isa = PBXGroup;
 			children = (
-				84D9C5992086C9EE0072EEED /* SettingsViewController.swift */,
-				84552A68207EFD2E00CE87D0 /* FirstViewController.swift */,
-				84552A6B207F0CD400CE87D0 /* SecondViewController.swift */,
+				84D9C5A4208829690072EEED /* CoreData */,
+				84D9C5A3208827200072EEED /* VC */,
 				84552A6A207F00E700CE87D0 /* Supporting Files */,
 				84552A62207EFCAE00CE87D0 /* Info.plist */,
-				84D9C59B208821680072EEED /* UIColor+theme.swift */,
+				84D9C5A52088298A0072EEED /* Extras */,
 			);
 			path = taskOrganizer;
 			sourceTree = "<group>";
@@ -79,6 +79,33 @@
 				84552A5F207EFCAE00CE87D0 /* LaunchScreen.storyboard */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		84D9C5A3208827200072EEED /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				84D9C5992086C9EE0072EEED /* SettingsViewController.swift */,
+				84552A68207EFD2E00CE87D0 /* FirstViewController.swift */,
+				84552A6B207F0CD400CE87D0 /* SecondViewController.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		84D9C5A4208829690072EEED /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				84D9C59F208826280072EEED /* DailyTaskDefinitionFile.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		84D9C5A52088298A0072EEED /* Extras */ = {
+			isa = PBXGroup;
+			children = (
+				84D9C59D208824BA0072EEED /* UINavigationController_Ext.swift */,
+				84D9C59B208821680072EEED /* UIColor+theme.swift */,
+			);
+			path = Extras;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,6 +183,7 @@
 				84552A69207EFD2E00CE87D0 /* FirstViewController.swift in Sources */,
 				84D9C59E208824BA0072EEED /* UINavigationController_Ext.swift in Sources */,
 				84552A57207EFCAE00CE87D0 /* AppDelegate.swift in Sources */,
+				84D9C5A1208826280072EEED /* DailyTaskDefinitionFile.xcdatamodeld in Sources */,
 				84D9C59C208821680072EEED /* UIColor+theme.swift in Sources */,
 				84D9C59A2086C9EE0072EEED /* SettingsViewController.swift in Sources */,
 			);
@@ -334,6 +362,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		84D9C59F208826280072EEED /* DailyTaskDefinitionFile.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				84D9C5A0208826280072EEED /* DailyTask.xcdatamodel */,
+			);
+			currentVersion = 84D9C5A0208826280072EEED /* DailyTask.xcdatamodel */;
+			path = DailyTaskDefinitionFile.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 84552A4B207EFCAD00CE87D0 /* Project object */;
 }
