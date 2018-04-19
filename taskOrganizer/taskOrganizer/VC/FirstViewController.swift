@@ -10,6 +10,32 @@ import UIKit
 
 class FirstViewController: UIViewController, FirstViewControllerDelegate {
     
+    struct tempTask{
+        var name: String
+        var date: Date
+        var completed: Bool
+    }
+    
+    
+    var dummyDataTasks = [tempTask]()
+
+
+
+    func setupDummyData(){
+        let task1 = tempTask(name: "Wake Up", date: Date(), completed: true)
+        let task2 = tempTask(name: "Insanity", date: Date(), completed: false)
+        let task3 = tempTask(name: "Brush Teeth", date: Date(), completed: true)
+        let task4 = tempTask(name: "Leave for Work", date: Date(), completed: false)
+        
+        dummyDataTasks.append(task1)
+        dummyDataTasks.append(task2)
+        dummyDataTasks.append(task3)
+        dummyDataTasks.append(task4)
+        
+        
+    }
+    
+    
     func tempProtocolFunction(){
         print("tempProtocolFunction executed")
     }
@@ -20,13 +46,6 @@ class FirstViewController: UIViewController, FirstViewControllerDelegate {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "*LEFT*", style: .plain, target: self, action: #selector(handleLeft))
     }
     
-    override func viewDidLoad() {
-      super.viewDidLoad()
-        view.backgroundColor = UIColor.yellow
-        setupNavigationBar()
-    }
-    
-    
     @objc func handleRight(){
         let myNavController = UINavigationController(rootViewController: SecondViewController())
         present(myNavController, animated: true)
@@ -36,4 +55,18 @@ class FirstViewController: UIViewController, FirstViewControllerDelegate {
         let myNavController = UINavigationController(rootViewController: SettingsViewController())
         present(myNavController, animated: true)
     }
+    
+    
+    
+    //MARK: ViewController Class Functions
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = UIColor.yellow
+        setupNavigationBar()
+    }
+    
+    
+    //MARK: UITableView
+    
+    
 }
