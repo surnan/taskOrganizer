@@ -8,8 +8,11 @@
 
 import UIKit
 
-class FirstViewController: UIViewController, FirstViewControllerDelegate {
-    
+//class FirstViewController: UIViewController, FirstViewControllerDelegate {
+
+
+class FirstViewController: UITableViewController, FirstViewControllerDelegate {
+
     struct tempTask{
         var name: String
         var date: Date
@@ -63,10 +66,14 @@ class FirstViewController: UIViewController, FirstViewControllerDelegate {
         super.viewDidLoad()
         view.backgroundColor = UIColor.yellow
         setupNavigationBar()
+        setupDummyData()
+        
+        self.tableView.register(DailyTaskCell.self, forCellReuseIdentifier: "MyCell")
+        
     }
     
     
-    //MARK: UITableView
+
     
     
 }
