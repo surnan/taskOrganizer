@@ -17,9 +17,15 @@ extension FirstViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //        let temp = UITableViewCell()
         //        temp.textLabel?.text = dummyDataTasks[indexPath.row].name
+
         let temp = DailyTaskCell()
         temp.nameLabel.text = dummyDataTasks[indexPath.row].name
+        
+        
         //        temp.textLabel?.text = dummyDataTasks[indexPath.row].name
+        
+        
+        
         return temp
     }
     
