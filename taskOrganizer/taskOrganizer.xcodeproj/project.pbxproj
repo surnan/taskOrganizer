@@ -11,7 +11,7 @@
 		84552A5E207EFCAE00CE87D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84552A5D207EFCAE00CE87D0 /* Assets.xcassets */; };
 		84552A61207EFCAE00CE87D0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84552A5F207EFCAE00CE87D0 /* LaunchScreen.storyboard */; };
 		84552A69207EFD2E00CE87D0 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84552A68207EFD2E00CE87D0 /* FirstViewController.swift */; };
-		84552A6C207F0CD400CE87D0 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84552A6B207F0CD400CE87D0 /* SecondViewController.swift */; };
+		84552A6C207F0CD400CE87D0 /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84552A6B207F0CD400CE87D0 /* AddTaskViewController.swift */; };
 		84D9C59A2086C9EE0072EEED /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D9C5992086C9EE0072EEED /* SettingsViewController.swift */; };
 		84D9C59C208821680072EEED /* UIColor+theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D9C59B208821680072EEED /* UIColor+theme.swift */; };
 		84D9C59E208824BA0072EEED /* UINavigationController_Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D9C59D208824BA0072EEED /* UINavigationController_Ext.swift */; };
@@ -27,7 +27,7 @@
 		84552A60207EFCAE00CE87D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84552A62207EFCAE00CE87D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84552A68207EFD2E00CE87D0 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		84552A6B207F0CD400CE87D0 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		84552A6B207F0CD400CE87D0 /* AddTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
 		84D9C5992086C9EE0072EEED /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		84D9C59B208821680072EEED /* UIColor+theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+theme.swift"; sourceTree = "<group>"; };
 		84D9C59D208824BA0072EEED /* UINavigationController_Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationController_Ext.swift; sourceTree = "<group>"; };
@@ -90,9 +90,9 @@
 			children = (
 				84D9C5992086C9EE0072EEED /* SettingsViewController.swift */,
 				84552A68207EFD2E00CE87D0 /* FirstViewController.swift */,
-				84552A6B207F0CD400CE87D0 /* SecondViewController.swift */,
-				84D9C5A620883A810072EEED /* DailyTaskCell.swift */,
+				84552A6B207F0CD400CE87D0 /* AddTaskViewController.swift */,
 				84D9C5A82088AD090072EEED /* FirstViewController+UITableView.swift */,
+				84D9C5A620883A810072EEED /* DailyTaskCell.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -141,7 +141,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = admin;
 				TargetAttributes = {
 					84552A52207EFCAD00CE87D0 = {
@@ -185,7 +185,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84552A6C207F0CD400CE87D0 /* SecondViewController.swift in Sources */,
+				84552A6C207F0CD400CE87D0 /* AddTaskViewController.swift in Sources */,
 				84552A69207EFD2E00CE87D0 /* FirstViewController.swift in Sources */,
 				84D9C59E208824BA0072EEED /* UINavigationController_Ext.swift in Sources */,
 				84D9C5A92088AD090072EEED /* FirstViewController+UITableView.swift in Sources */,
@@ -225,6 +225,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -232,6 +233,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -282,6 +284,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -289,6 +292,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

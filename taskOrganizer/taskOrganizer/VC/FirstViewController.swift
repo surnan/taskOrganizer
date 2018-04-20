@@ -8,9 +8,6 @@
 
 import UIKit
 
-//class FirstViewController: UIViewController, FirstViewControllerDelegate {
-
-
 class FirstViewController: UITableViewController, FirstViewControllerDelegate {
 
     struct tempTask{
@@ -19,9 +16,7 @@ class FirstViewController: UITableViewController, FirstViewControllerDelegate {
         var completed: Bool
     }
     
-    
     var dummyDataTasks = [tempTask]()
-
 
 
     func setupDummyData(){
@@ -34,8 +29,6 @@ class FirstViewController: UITableViewController, FirstViewControllerDelegate {
         dummyDataTasks.append(task2)
         dummyDataTasks.append(task3)
         dummyDataTasks.append(task4)
-        
-        
     }
     
     
@@ -44,17 +37,17 @@ class FirstViewController: UITableViewController, FirstViewControllerDelegate {
     }
 
     func setupNavigationBar(){
-        self.navigationItem.title = "HELLO WORLD"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "*RIGHT*", style: .plain, target: self, action: #selector(handleRight))
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "*LEFT*", style: .plain, target: self, action: #selector(handleLeft))
+        navigationItem.title = "FirstViewController"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(handleSettings))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "plus"), style: .plain, target: self, action: #selector(handleAdd))
     }
     
-    @objc func handleRight(){
-        let myNavController = UINavigationController(rootViewController: SecondViewController())
+    @objc func handleAdd(){
+        let myNavController = UINavigationController(rootViewController: AddTaskViewController())
         present(myNavController, animated: true)
     }
 
-    @objc func handleLeft(){
+    @objc func handleSettings(){
         let myNavController = UINavigationController(rootViewController: SettingsViewController())
         present(myNavController, animated: true)
     }
@@ -67,13 +60,6 @@ class FirstViewController: UITableViewController, FirstViewControllerDelegate {
         view.backgroundColor = UIColor.yellow
         setupNavigationBar()
         setupDummyData()
-        
         self.tableView.register(DailyTaskCell.self, forCellReuseIdentifier: "MyCell")
-        
     }
-    
-    
-
-    
-    
 }

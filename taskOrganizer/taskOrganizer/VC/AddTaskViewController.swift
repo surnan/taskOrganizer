@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  AddTaskViewController.swift
 //  taskOrganizer
 //
 //  Created by admin on 4/11/18.
@@ -13,7 +13,7 @@ protocol FirstViewControllerDelegate {
 }
 
 
-class SecondViewController: UIViewController {
+class AddTaskViewController: UIViewController {
     
      var backButton : UIButton = {
         var myButton = UIButton()
@@ -30,9 +30,9 @@ class SecondViewController: UIViewController {
     
     
     func setupNavigationBar(){
-        navigationItem.title = "HELLO WORLD"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "*RIGHT*", style: .plain, target: self, action: #selector(handleRight))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "CANCEL", style: .plain, target: self, action: #selector(handleLeft))
+        navigationItem.title = "AddTaskViewController"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "*RIGHT*", style: .plain, target: self, action: #selector(handleAdd))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "CANCEL", style: .plain, target: self, action: #selector(handleSettings))
     }
     
     func organizeUI(){
@@ -41,22 +41,20 @@ class SecondViewController: UIViewController {
           backButton.target(forAction: #selector(handleMyButton), withSender: nil)
         backButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         backButton.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        
-        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.red
+        view.backgroundColor = UIColor.lightPurple
         setupNavigationBar()
         organizeUI()
     }
     
-    @objc func handleRight(){
+    @objc func handleAdd(){
         print("click**")
     }
     
-    @objc func handleLeft(){
+    @objc func handleSettings(){
         self.dismiss(animated: true, completion: nil)
         print("**click")
     }
