@@ -8,29 +8,39 @@
 
 import UIKit
 
-class FirstViewController: UITableViewController, FirstViewControllerDelegate {
+class FirstViewController: UITableViewController, CreateTaskViewControllerDelegate {
 
-    struct tempTask{
-        var name: String
-        var date: Date
-        var completed: Bool
+    func didAddTask(myTaskItem: taskItem){
+        print("temp")
+        
+        dummyDataTasks.append(taskItem(name: myTaskItem.name, date: Date(), completed: true))
+
+        let newIndexPath = IndexPath(row: dummyDataTasks.count - 1, section: 0)
+        tableView.insertRows(at: [newIndexPath], with: .left)
+        
     }
-    
-    var dummyDataTasks = [tempTask]()
 
+    
+    var dummyDataTasks = [taskItem]()
 
     func setupDummyData(){
-        let task1 = tempTask(name: "Wake Up", date: Date(), completed: true)
-        let task2 = tempTask(name: "Insanity", date: Date(), completed: false)
-        let task3 = tempTask(name: "Brush Teeth", date: Date(), completed: true)
-        let task4 = tempTask(name: "Leave for Work", date: Date(), completed: false)
-        
-        dummyDataTasks.append(task1)
-        dummyDataTasks.append(task2)
-        dummyDataTasks.append(task3)
-        dummyDataTasks.append(task4)
+        dummyDataTasks.append(taskItem(name: "Wake Up", date: Date(), completed: true))
+        dummyDataTasks.append(taskItem(name: "Insanity", date: Date(), completed: false))
+        dummyDataTasks.append(taskItem(name: "Brush Teeth", date: Date(), completed: true))
+        dummyDataTasks.append(taskItem(name: "Leave for Work", date: Date(), completed: false))
     }
     
+    
+    func addCompany(){
+        dummyDataTasks.append(taskItem(name: "Wake Up", date: Date(), completed: true))
+
+        //        tableView.reloadData()  //<-- no animation
+    
+        let newIndexPath = IndexPath(row: dummyDataTasks.count - 1, section: 0)
+        tableView.insertRows(at: [newIndexPath], with: .left)
+    
+    
+    }
     
     func tempProtocolFunction(){
         print("tempProtocolFunction executed")
@@ -43,7 +53,11 @@ class FirstViewController: UITableViewController, FirstViewControllerDelegate {
     }
     
     @objc func handleAdd(){
-        let myNavController = UINavigationController(rootViewController: AddTaskViewController())
+//        addCompany()
+        
+        let myCreateTaskViewController = CreateTaskViewController()
+        myCreateTaskViewController.delegate = self
+        let myNavController = UINavigationController(rootViewController: myCreateTaskViewController)
         present(myNavController, animated: true)
     }
 
@@ -53,11 +67,10 @@ class FirstViewController: UITableViewController, FirstViewControllerDelegate {
     }
     
     
-    
     //MARK: ViewController Class Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.yellow
+        tableView.backgroundColor = UIColor.white
         setupNavigationBar()
         setupDummyData()
         self.tableView.register(DailyTaskCell.self, forCellReuseIdentifier: "MyCell")

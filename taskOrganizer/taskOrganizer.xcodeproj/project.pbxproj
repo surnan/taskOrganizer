@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8441DEF3208D54BF00741FC3 /* DummyTaskStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441DEF2208D54BF00741FC3 /* DummyTaskStruct.swift */; };
 		84552A57207EFCAE00CE87D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84552A56207EFCAE00CE87D0 /* AppDelegate.swift */; };
 		84552A5E207EFCAE00CE87D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84552A5D207EFCAE00CE87D0 /* Assets.xcassets */; };
 		84552A61207EFCAE00CE87D0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84552A5F207EFCAE00CE87D0 /* LaunchScreen.storyboard */; };
 		84552A69207EFD2E00CE87D0 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84552A68207EFD2E00CE87D0 /* FirstViewController.swift */; };
-		84552A6C207F0CD400CE87D0 /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84552A6B207F0CD400CE87D0 /* AddTaskViewController.swift */; };
+		84552A6C207F0CD400CE87D0 /* CreateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84552A6B207F0CD400CE87D0 /* CreateTaskViewController.swift */; };
 		84D9C59A2086C9EE0072EEED /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D9C5992086C9EE0072EEED /* SettingsViewController.swift */; };
 		84D9C59C208821680072EEED /* UIColor+theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D9C59B208821680072EEED /* UIColor+theme.swift */; };
 		84D9C59E208824BA0072EEED /* UINavigationController_Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D9C59D208824BA0072EEED /* UINavigationController_Ext.swift */; };
@@ -21,13 +22,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8441DEF2208D54BF00741FC3 /* DummyTaskStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyTaskStruct.swift; sourceTree = "<group>"; };
 		84552A53207EFCAE00CE87D0 /* taskOrganizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = taskOrganizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84552A56207EFCAE00CE87D0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84552A5D207EFCAE00CE87D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84552A60207EFCAE00CE87D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84552A62207EFCAE00CE87D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84552A68207EFD2E00CE87D0 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		84552A6B207F0CD400CE87D0 /* AddTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
+		84552A6B207F0CD400CE87D0 /* CreateTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskViewController.swift; sourceTree = "<group>"; };
 		84D9C5992086C9EE0072EEED /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		84D9C59B208821680072EEED /* UIColor+theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+theme.swift"; sourceTree = "<group>"; };
 		84D9C59D208824BA0072EEED /* UINavigationController_Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationController_Ext.swift; sourceTree = "<group>"; };
@@ -90,7 +92,7 @@
 			children = (
 				84D9C5992086C9EE0072EEED /* SettingsViewController.swift */,
 				84552A68207EFD2E00CE87D0 /* FirstViewController.swift */,
-				84552A6B207F0CD400CE87D0 /* AddTaskViewController.swift */,
+				84552A6B207F0CD400CE87D0 /* CreateTaskViewController.swift */,
 				84D9C5A82088AD090072EEED /* FirstViewController+UITableView.swift */,
 				84D9C5A620883A810072EEED /* DailyTaskCell.swift */,
 			);
@@ -108,6 +110,7 @@
 		84D9C5A52088298A0072EEED /* Extras */ = {
 			isa = PBXGroup;
 			children = (
+				8441DEF2208D54BF00741FC3 /* DummyTaskStruct.swift */,
 				84D9C59D208824BA0072EEED /* UINavigationController_Ext.swift */,
 				84D9C59B208821680072EEED /* UIColor+theme.swift */,
 			);
@@ -185,12 +188,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84552A6C207F0CD400CE87D0 /* AddTaskViewController.swift in Sources */,
+				84552A6C207F0CD400CE87D0 /* CreateTaskViewController.swift in Sources */,
 				84552A69207EFD2E00CE87D0 /* FirstViewController.swift in Sources */,
 				84D9C59E208824BA0072EEED /* UINavigationController_Ext.swift in Sources */,
 				84D9C5A92088AD090072EEED /* FirstViewController+UITableView.swift in Sources */,
 				84552A57207EFCAE00CE87D0 /* AppDelegate.swift in Sources */,
 				84D9C5A720883A810072EEED /* DailyTaskCell.swift in Sources */,
+				8441DEF3208D54BF00741FC3 /* DummyTaskStruct.swift in Sources */,
 				84D9C5A1208826280072EEED /* DailyTaskDefinitionFile.xcdatamodeld in Sources */,
 				84D9C59C208821680072EEED /* UIColor+theme.swift in Sources */,
 				84D9C59A2086C9EE0072EEED /* SettingsViewController.swift in Sources */,

@@ -17,6 +17,19 @@ extension FirstViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let temp = tableView.dequeueReusableCell(withIdentifier: "MyCell") as! DailyTaskCell
         temp.nameLabel.text = dummyDataTasks[indexPath.row].name
+        temp.nameLabel.font = UIFont.boldSystemFont(ofSize: 16)
         return temp
     }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let myView = UIView()
+        myView.backgroundColor = UIColor.lightBlue
+        return myView
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
+    
 }
