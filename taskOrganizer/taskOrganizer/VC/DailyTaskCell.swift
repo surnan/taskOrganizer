@@ -40,8 +40,7 @@ class DailyTaskCell: UITableViewCell {
         
         dateLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -20).isActive = true
         dateLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        
-        
+
     }
     
     required init?(coder aDecoder: NSCoder) {

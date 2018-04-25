@@ -11,12 +11,13 @@ import UIKit
 extension FirstViewController {
     //MARK: UITableView function
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dummyDataTasks.count
+//        return dummyDataTasks.count
+        return dailyTasksList.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let temp = tableView.dequeueReusableCell(withIdentifier: "MyCell") as! DailyTaskCell
-        temp.nameLabel.text = dummyDataTasks[indexPath.row].name
+        temp.nameLabel.text = dailyTasksList[indexPath.row].name
         temp.nameLabel.font = UIFont.boldSystemFont(ofSize: 16)
         return temp
     }

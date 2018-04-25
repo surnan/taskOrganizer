@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 protocol CreateTaskViewControllerDelegate {
     func didAddTask(myTaskItem: taskItem)
@@ -28,14 +29,14 @@ class CreateTaskViewController: UIViewController {
     
     
     var nameLabel: UILabel = {
-       var myLabel = UILabel()
+        var myLabel = UILabel()
         myLabel.translatesAutoresizingMaskIntoConstraints = false
         myLabel.text = "NAME: "
         return myLabel
     }()
     
     var nameTextField: UITextField = {
-       var myNameTextField = UITextField()
+        var myNameTextField = UITextField()
         myNameTextField.translatesAutoresizingMaskIntoConstraints = false
         myNameTextField.placeholder = "Please Enter Name"
         return myNameTextField
@@ -50,7 +51,7 @@ class CreateTaskViewController: UIViewController {
     
     func setupNavigationBar(){
         navigationItem.title = "CreateTaskViewController"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "*RIGHT*", style: .plain, target: self, action: #selector(handleAdd))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "SAVE", style: .plain, target: self, action: #selector(handleAdd))
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "CANCEL", style: .plain, target: self, action: #selector(handleSettings))
     }
     
@@ -84,17 +85,26 @@ class CreateTaskViewController: UIViewController {
     }
     
     @objc func handleAdd(){
-        print("click**")
+        //        self.dismiss(animated: true) {
+        //            let tempTaskItem = taskItem(name: self.nameTextField.text!, date: Date(), completed: true)
+        //            self.delegate?.didAddTask(myTaskItem: tempTaskItem)
         
-        
-        self.dismiss(animated: true) {
-            let tempTaskItem = taskItem(name: self.nameTextField.text!, date: Date(), completed: true)
-            self.delegate?.didAddTask(myTaskItem: tempTaskItem)
+        let persistentContainer = NSPersistentContainer(name: "DailyTaskDefinitionFile")
+        persistentContainer.loadPersistentStores { (store, err) in
+            if let err = err {
+                fatalError("Unable to load store when attempting add \(err)")
+            }
         }
+        let context = persistentContainer.viewContext
+        let tempTask = NSEntityDescription.insertNewObject(forEntityName: "DailyTask", into: context)
+        tempTask.setValue(nameTextField.text!, forKey: "name")
+        tempTask.setValue(true, forKey: "completed")
+        tempTask.setValue(Date(), forKey: "time")
+        
+        try? context.save()
     }
     
     @objc func handleSettings(){
         self.dismiss(animated: true, completion: nil)
-        print("**click")
     }
 }
