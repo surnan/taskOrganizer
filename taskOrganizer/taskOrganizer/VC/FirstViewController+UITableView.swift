@@ -11,7 +11,6 @@ import UIKit
 extension FirstViewController {
     //MARK: UITableView function
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return dummyDataTasks.count
         return dailyTasksList.count
     }
     

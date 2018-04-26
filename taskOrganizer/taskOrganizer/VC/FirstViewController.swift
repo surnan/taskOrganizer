@@ -11,34 +11,16 @@ import CoreData
 
 class FirstViewController: UITableViewController, CreateTaskViewControllerDelegate {
 
-    func didAddTask(myTaskItem: taskItem){
-        print("temp")
-        
-//        dummyDataTasks.append(taskItem(name: myTaskItem.name, date: Date(), completed: true))
-//
-//        let newIndexPath = IndexPath(row: dummyDataTasks.count - 1, section: 0)
-//        tableView.insertRows(at: [newIndexPath], with: .left)
-        
-    }
-
-   
+    
     var dailyTasksList = [DailyTask]()
     
-    
-    
-//    func addCompany(){
-//        dummyDataTasks.append(taskItem(name: "Wake Up", date: Date(), completed: true))
-//
-//        //        tableView.reloadData()  //<-- no animation
-//
-//        let newIndexPath = IndexPath(row: dummyDataTasks.count - 1, section: 0)
-//        tableView.insertRows(at: [newIndexPath], with: .left)
-//    }
-    
-    func tempProtocolFunction(){
-        print("tempProtocolFunction executed")
+    func didAddTask(myTaskItem: DailyTask){
+        dailyTasksList.append(myTaskItem)
+        let newIndexPath = IndexPath(row: dailyTasksList.count - 1, section: 0)
+        tableView.insertRows(at: [newIndexPath], with: .left)
     }
 
+    
     func setupNavigationBar(){
         navigationItem.title = "FirstViewController"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(handleSettings))
@@ -46,8 +28,6 @@ class FirstViewController: UITableViewController, CreateTaskViewControllerDelega
     }
     
     @objc func handleAdd(){
-//        addCompany()
-        
         let myCreateTaskViewController = CreateTaskViewController()
         myCreateTaskViewController.delegate = self
         let myNavController = UINavigationController(rootViewController: myCreateTaskViewController)
@@ -65,27 +45,26 @@ class FirstViewController: UITableViewController, CreateTaskViewControllerDelega
         super.viewDidLoad()
         tableView.backgroundColor = UIColor.white
         setupNavigationBar()
-//        setupDummyData()
+
+//        let persistentContainer = NSPersistentContainer(name: "DailyTaskDefinitionFile")
+//        persistentContainer.loadPersistentStores { (store, err) in
+//            if let err = err {
+//                fatalError("Loading of store failed: \(err)")
+//            }
+//        }
+//        let context = persistentContainer.viewContext
         
-        let persistentContainer = NSPersistentContainer(name: "DailyTaskDefinitionFile")
-        persistentContainer.loadPersistentStores { (store, err) in
-            if let err = err {
-                fatalError("Loading of store failed: \(err)")
-            }
-        }
-        let context = persistentContainer.viewContext
+        let context = CoreDataManager.shared.persistentContainer.viewContext
         
         let fetchRequest = NSFetchRequest<DailyTask>(entityName: "DailyTask")
         
         do {
             let tempTasks = try context.fetch(fetchRequest)
-            tempTasks.forEach{dailyTasksList.append($0)}
-            
+            self.dailyTasksList = tempTasks
+            self.tableView.reloadData()
         } catch let err {
             print("Error fetching data \(err)")
         }
-        
-        
         self.tableView.register(DailyTaskCell.self, forCellReuseIdentifier: "MyCell")
     }
 }

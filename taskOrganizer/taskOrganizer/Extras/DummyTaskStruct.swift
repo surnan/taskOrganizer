@@ -6,10 +6,10 @@
 //  Copyright © 2018 admin. All rights reserved.
 //
 
-import Foundation
-
-struct taskItem{
-    var name: String
-    var date: Date
-    var completed: Bool
-}
+//import Foundation
+//
+//struct taskItem{
+//    var name: String
+//    var date: Date
+//    var completed: Bool
+//}

@@ -10,3 +10,17 @@ import UIKit
 import CoreData
 
 
+struct CoreDataManager {
+    static let shared = CoreDataManager()
+    
+    let persistentContainer: NSPersistentContainer = {
+        let myContainer = NSPersistentContainer(name: "DailyTaskDefinitionFile")
+        myContainer.loadPersistentStores { (store, err) in
+            if let err = err {
+                fatalError("Loading of store failed: \(err)")
+            }
+        }
+        let context = myContainer.viewContext
+        return myContainer
+    }()
+}
