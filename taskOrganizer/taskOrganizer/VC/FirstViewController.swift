@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 class FirstViewController: UITableViewController, CreateTaskViewControllerDelegate {
-
+    
     
     var dailyTasksList = [DailyTask]()
     
@@ -19,7 +19,7 @@ class FirstViewController: UITableViewController, CreateTaskViewControllerDelega
         let newIndexPath = IndexPath(row: dailyTasksList.count - 1, section: 0)
         tableView.insertRows(at: [newIndexPath], with: .left)
     }
-
+    
     
     func setupNavigationBar(){
         navigationItem.title = "FirstViewController"
@@ -33,7 +33,7 @@ class FirstViewController: UITableViewController, CreateTaskViewControllerDelega
         let myNavController = UINavigationController(rootViewController: myCreateTaskViewController)
         present(myNavController, animated: true)
     }
-
+    
     @objc func handleSettings(){
         let myNavController = UINavigationController(rootViewController: SettingsViewController())
         present(myNavController, animated: true)
@@ -45,17 +45,8 @@ class FirstViewController: UITableViewController, CreateTaskViewControllerDelega
         super.viewDidLoad()
         tableView.backgroundColor = UIColor.white
         setupNavigationBar()
-
-//        let persistentContainer = NSPersistentContainer(name: "DailyTaskDefinitionFile")
-//        persistentContainer.loadPersistentStores { (store, err) in
-//            if let err = err {
-//                fatalError("Loading of store failed: \(err)")
-//            }
-//        }
-//        let context = persistentContainer.viewContext
         
         let context = CoreDataManager.shared.persistentContainer.viewContext
-        
         let fetchRequest = NSFetchRequest<DailyTask>(entityName: "DailyTask")
         
         do {

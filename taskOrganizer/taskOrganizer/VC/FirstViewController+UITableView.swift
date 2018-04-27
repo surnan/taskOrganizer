@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 extension FirstViewController {
     //MARK: UITableView function
@@ -31,5 +32,30 @@ extension FirstViewController {
         return 50
     }
     
-    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (_, indexPath) in
+
+            let tempTask = self.dailyTasksList[indexPath.row]
+
+            self.dailyTasksList.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .left)
+            
+            let context = CoreDataManager.shared.persistentContainer.viewContext
+//            let tempTask = self.dailyTasksList[indexPath.row]
+            context.delete(tempTask)
+            
+            
+            do {
+                try context.save()
+            } catch let delError {
+                fatalError("Unable to save context after object deletion \(delError)")
+            }
+            
+            
+        }
+        let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (_, indexPath) in
+            print("Edit Selected")
+        }
+        return [deleteAction, editAction]
+    }
 }

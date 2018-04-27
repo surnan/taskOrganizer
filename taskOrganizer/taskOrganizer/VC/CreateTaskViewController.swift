@@ -70,7 +70,7 @@ class CreateTaskViewController: UIViewController {
         backButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         backButton.topAnchor.constraint(equalTo: nameLabel.topAnchor, constant: 50).isActive = true
     }
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,31 +80,15 @@ class CreateTaskViewController: UIViewController {
     }
     
     @objc func handleAdd(){
-        //        self.dismiss(animated: true) {
-        //            let tempTaskItem = taskItem(name: self.nameTextField.text!, date: Date(), completed: true)
-        //            self.delegate?.didAddTask(myTaskItem: tempTaskItem)
-
-        
-//        let persistentContainer = NSPersistentContainer(name: "DailyTaskDefinitionFile")
-//        persistentContainer.loadPersistentStores { (store, err) in
-//            if let err = err {
-//                fatalError("Unable to load store when attempting add \(err)")
-//            }
-//        }
-//        let context = persistentContainer.viewContext
-        
-        
         let context = CoreDataManager.shared.persistentContainer.viewContext
-
+        
         let tempTask = NSEntityDescription.insertNewObject(forEntityName: "DailyTask", into: context)
         tempTask.setValue(nameTextField.text!, forKey: "name")
         tempTask.setValue(true, forKey: "completed")
         tempTask.setValue(Date(), forKey: "time")
         
-        
         do {
             try context.save()
-            
             dismiss(animated: true) {
                 self.delegate?.didAddTask(myTaskItem: tempTask as! DailyTask)
             }
