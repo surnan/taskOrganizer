@@ -17,25 +17,26 @@ protocol CreateTaskViewControllerDelegate {
 
 class CreateTaskViewController: UIViewController {
     
-    
+    //MARK:- Pre-Load Variables
     var delegate: CreateTaskViewControllerDelegate?
     
     var dailyTask: DailyTask? {
         didSet {
             nameTextField.text = dailyTask?.name
+            guard let currentTime = dailyTask?.time else {return}
+            dateField.date = currentTime
         }
     }
     
-    var backButton : UIButton = {
-        var myButton = UIButton()
-        myButton.setTitle("CLICK ME", for: .normal)
-        myButton.setTitleColor(.black, for: .normal)
-        myButton.addTarget(self, action: #selector(handleMyButton), for: .touchUpInside)
-        myButton.translatesAutoresizingMaskIntoConstraints = false
-        return myButton
+    
+    //MARK:- UI Element definitions
+    var backgroundView : UIView = {
+        var myView = UIView()
+        myView.translatesAutoresizingMaskIntoConstraints = false
+        myView.backgroundColor = UIColor.lightBlue
+        return myView
     }()
-    
-    
+
     var nameLabel: UILabel = {
         var myLabel = UILabel()
         myLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -50,45 +51,15 @@ class CreateTaskViewController: UIViewController {
         return myNameTextField
     }()
     
+    var dateField: UIDatePicker = {
+        var myDate = UIDatePicker()
+        myDate.translatesAutoresizingMaskIntoConstraints = false
+        myDate.datePickerMode = .time
+        return myDate
+    }()
     
-    @objc func handleMyButton(){
-        print("BUTTON PRESSED")
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    
-    func setupNavigationBar(){
-        
-        navigationItem.title = dailyTask == nil ? "Create" : "Edit"
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "ADD", style: .plain, target: self, action: #selector(handleAdd))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "CANCEL", style: .plain, target: self, action: #selector(handleSettings))
-    }
-    
-    func organizeUI(){
-        
-        [nameLabel, nameTextField, backButton].forEach{view.addSubview($0)}
-        
-        nameLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 100).isActive = true
-        nameLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        
-        nameTextField.leftAnchor.constraint(equalTo: nameLabel.rightAnchor, constant: 50).isActive = true
-        nameTextField.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        
-        backButton.target(forAction: #selector(handleMyButton), withSender: nil)
-        backButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        backButton.topAnchor.constraint(equalTo: nameLabel.topAnchor, constant: 50).isActive = true
-    }
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = UIColor.lightPurple
-        setupNavigationBar()
-        organizeUI()
-    }
-    
-    @objc func handleAdd(){
+    //MARK:- My Functions
+    @objc func handleAddOrSave(){
         let context = CoreDataManager.shared.persistentContainer.viewContext
         
         if dailyTask == nil {
@@ -96,7 +67,6 @@ class CreateTaskViewController: UIViewController {
             tempTask.setValue(nameTextField.text!, forKey: "name")
             tempTask.setValue(true, forKey: "completed")
             tempTask.setValue(Date(), forKey: "time")
-            
             do {
                 try context.save()
                 dismiss(animated: true) {
@@ -106,9 +76,8 @@ class CreateTaskViewController: UIViewController {
                 print("Failed to save Company: \(saveErr)")
             }
         } else {
-            
             dailyTask?.name = nameTextField.text
-            
+            dailyTask?.time = dateField.date
             do {
                 try context.save()
                 dismiss(animated: true, completion: {
@@ -120,7 +89,67 @@ class CreateTaskViewController: UIViewController {
         }
     }
     
-    @objc func handleSettings(){
-        self.dismiss(animated: true, completion: nil)
+    @objc func handleCancel(){ self.dismiss(animated: true, completion: nil)}
+
+    
+    //MARK:- Setting up UI
+    func organizeUI(){
+        [ backgroundView, nameLabel, nameTextField, dateField].forEach{view.addSubview($0)}
+        
+        backgroundView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        backgroundView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        backgroundView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        backgroundView.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        
+        nameLabel.leftAnchor.constraint(equalTo: backgroundView.leftAnchor, constant: 20).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: 20).isActive = true
+        
+        nameTextField.leftAnchor.constraint(equalTo: nameLabel.rightAnchor, constant: 20).isActive = true
+        nameTextField.centerYAnchor.constraint(equalTo: nameLabel.centerYAnchor).isActive = true
+        
+        dateField.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10).isActive = true
+        dateField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        dateField.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor).isActive = true
+    }
+    
+    func setupNavigationBar(){
+        navigationItem.title = dailyTask == nil ? "Create" : "Edit"
+        let rightButtonStr = dailyTask == nil ? "Add" : "Save"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: rightButtonStr, style: .plain, target: self, action: #selector(handleAddOrSave))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "CANCEL", style: .plain, target: self, action: #selector(handleCancel))
+    }
+
+    
+    //MARK:- Built-In Functions
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = UIColor.lightPurple
+        setupNavigationBar()
+        organizeUI()
     }
 }
+
+
+
+
+
+/*
+ var backButton : UIButton = {
+ var myButton = UIButton()
+ myButton.setTitle("CLICK ME", for: .normal)
+ myButton.setTitleColor(.black, for: .normal)
+ myButton.addTarget(self, action: #selector(handleMyButton), for: .touchUpInside)
+ myButton.translatesAutoresizingMaskIntoConstraints = false
+ return myButton
+ }()
+ 
+ backButton.target(forAction: #selector(handleMyButton), withSender: nil)
+ backButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+ backButton.topAnchor.constraint(equalTo: nameLabel.topAnchor, constant: 50).isActive = true
+ 
+ //    @objc func handleMyButton(){
+ //        print("BUTTON PRESSED")
+ //        self.dismiss(animated: true, completion: nil)
+ //    }
+ */
+

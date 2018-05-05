@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 
 extension FirstViewController {
+    
     //MARK: UITableView function
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dailyTasksList.count
@@ -19,6 +20,13 @@ extension FirstViewController {
         let temp = tableView.dequeueReusableCell(withIdentifier: "MyCell") as! DailyTaskCell
         temp.nameLabel.text = dailyTasksList[indexPath.row].name
         temp.nameLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        
+        let myDateFormatter = DateFormatter()
+        myDateFormatter.dateFormat = "HH:mm"
+
+         temp.dateLabel.text = myDateFormatter.string(from: dailyTasksList[indexPath.row].time!)
+        
+        
         return temp
     }
     
@@ -33,17 +41,15 @@ extension FirstViewController {
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        //Delete Action - Start
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (_, indexPath) in
             let tempTask = self.dailyTasksList[indexPath.row]
-
             self.dailyTasksList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .left)
             
             let context = CoreDataManager.shared.persistentContainer.viewContext
-//            let tempTask = self.dailyTasksList[indexPath.row]  <---- weird errors if you declare it here instead
-            
+            //            let tempTask = self.dailyTasksList[indexPath.row]  <---- weird errors if you declare it here instead
             context.delete(tempTask)
-            
             do {
                 try context.save()
             } catch let delError {
@@ -51,22 +57,21 @@ extension FirstViewController {
             }
         }
         deleteAction.backgroundColor = UIColor.lightRed
-
+        //Delete Action - Finish
+        /////////////////////////////////////////
+        //Edit Action - Start
         let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (_, indexPath) in
             print("Edit Selected")
-            
             let myDailyTask = self.dailyTasksList[indexPath.row]
             let myCreateTaskViewController = CreateTaskViewController()
             myCreateTaskViewController.dailyTask = myDailyTask
-            
-            //
             myCreateTaskViewController.delegate = self
-            
             let myNavigationController = UINavigationController(rootViewController: myCreateTaskViewController)
             self.present(myNavigationController, animated: true, completion: nil)
         }
         editAction.backgroundColor = UIColor.darkBlue
-        
+        //Edit Action - Finish
+
         return [deleteAction, editAction]
     }
 }

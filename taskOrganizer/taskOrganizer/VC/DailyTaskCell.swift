@@ -12,20 +12,20 @@ class DailyTaskCell: UITableViewCell {
     
     var nameLabel : UILabel = {
         let tempLabel = UILabel()
-        tempLabel.text = "Apple"
-        tempLabel.backgroundColor = UIColor.white
+        tempLabel.text = "???"
         tempLabel.textColor = UIColor.blue
         return tempLabel
     }()
 
     var dateLabel : UILabel = {
         let tempLabel = UILabel()
-        tempLabel.text = "11/12/2018"
-        tempLabel.backgroundColor = UIColor.blue
-        tempLabel.textColor = UIColor.white
+        tempLabel.text = "???"
+        tempLabel.textColor = UIColor.blue
         return tempLabel
     }()
 
+    
+    
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -40,7 +40,6 @@ class DailyTaskCell: UITableViewCell {
         
         dateLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -20).isActive = true
         dateLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-
     }
     
     required init?(coder aDecoder: NSCoder) {
