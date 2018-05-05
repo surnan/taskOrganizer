@@ -15,9 +15,21 @@ class FirstViewController: UITableViewController, CreateTaskViewControllerDelega
     var dailyTasksList = [DailyTask]()
     
     func didAddTask(myTaskItem: DailyTask){
+        print("DID ADD TASK CALLED")
         dailyTasksList.append(myTaskItem)
         let newIndexPath = IndexPath(row: dailyTasksList.count - 1, section: 0)
         tableView.insertRows(at: [newIndexPath], with: .left)
+    }
+    
+    
+    func didEditTask(myTaskItem: DailyTask){
+        print("DID EDIT TASK CALLED")
+        
+        let row = dailyTasksList.index(of: myTaskItem)
+        
+        dailyTasksList[row!].name = myTaskItem.name
+        tableView.reloadData()
+        
     }
     
     

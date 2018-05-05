@@ -11,6 +11,7 @@ import CoreData
 
 protocol CreateTaskViewControllerDelegate {
     func didAddTask(myTaskItem: DailyTask)
+    func didEditTask(myTaskItem: DailyTask)
 }
 
 
@@ -18,6 +19,12 @@ class CreateTaskViewController: UIViewController {
     
     
     var delegate: CreateTaskViewControllerDelegate?
+    
+    var dailyTask: DailyTask? {
+        didSet {
+            nameTextField.text = dailyTask?.name
+        }
+    }
     
     var backButton : UIButton = {
         var myButton = UIButton()
@@ -51,7 +58,9 @@ class CreateTaskViewController: UIViewController {
     
     
     func setupNavigationBar(){
-        navigationItem.title = "CreateTaskViewController"
+        
+        navigationItem.title = dailyTask == nil ? "Create" : "Edit"
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "ADD", style: .plain, target: self, action: #selector(handleAdd))
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "CANCEL", style: .plain, target: self, action: #selector(handleSettings))
     }
@@ -82,18 +91,32 @@ class CreateTaskViewController: UIViewController {
     @objc func handleAdd(){
         let context = CoreDataManager.shared.persistentContainer.viewContext
         
-        let tempTask = NSEntityDescription.insertNewObject(forEntityName: "DailyTask", into: context)
-        tempTask.setValue(nameTextField.text!, forKey: "name")
-        tempTask.setValue(true, forKey: "completed")
-        tempTask.setValue(Date(), forKey: "time")
-        
-        do {
-            try context.save()
-            dismiss(animated: true) {
-                self.delegate?.didAddTask(myTaskItem: tempTask as! DailyTask)
+        if dailyTask == nil {
+            let tempTask = NSEntityDescription.insertNewObject(forEntityName: "DailyTask", into: context)
+            tempTask.setValue(nameTextField.text!, forKey: "name")
+            tempTask.setValue(true, forKey: "completed")
+            tempTask.setValue(Date(), forKey: "time")
+            
+            do {
+                try context.save()
+                dismiss(animated: true) {
+                    self.delegate?.didAddTask(myTaskItem: tempTask as! DailyTask)
+                }
+            } catch let saveErr {
+                print("Failed to save Company: \(saveErr)")
             }
-        } catch let saveErr {
-            print("Failed to save Company: \(saveErr)")
+        } else {
+            
+            dailyTask?.name = nameTextField.text
+            
+            do {
+                try context.save()
+                dismiss(animated: true, completion: {
+                    self.delegate?.didEditTask(myTaskItem: self.dailyTask!)
+                })
+            } catch let saveErr {
+                print("Failed to save Company: \(saveErr)")
+            }
         }
     }
     

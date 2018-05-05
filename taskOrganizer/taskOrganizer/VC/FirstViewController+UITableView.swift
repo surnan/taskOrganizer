@@ -34,28 +34,39 @@ extension FirstViewController {
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (_, indexPath) in
-
             let tempTask = self.dailyTasksList[indexPath.row]
 
             self.dailyTasksList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .left)
             
             let context = CoreDataManager.shared.persistentContainer.viewContext
-//            let tempTask = self.dailyTasksList[indexPath.row]
-            context.delete(tempTask)
+//            let tempTask = self.dailyTasksList[indexPath.row]  <---- weird errors if you declare it here instead
             
+            context.delete(tempTask)
             
             do {
                 try context.save()
             } catch let delError {
                 fatalError("Unable to save context after object deletion \(delError)")
             }
-            
-            
         }
+        deleteAction.backgroundColor = UIColor.lightRed
+
         let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (_, indexPath) in
             print("Edit Selected")
+            
+            let myDailyTask = self.dailyTasksList[indexPath.row]
+            let myCreateTaskViewController = CreateTaskViewController()
+            myCreateTaskViewController.dailyTask = myDailyTask
+            
+            //
+            myCreateTaskViewController.delegate = self
+            
+            let myNavigationController = UINavigationController(rootViewController: myCreateTaskViewController)
+            self.present(myNavigationController, animated: true, completion: nil)
         }
+        editAction.backgroundColor = UIColor.darkBlue
+        
         return [deleteAction, editAction]
     }
 }
