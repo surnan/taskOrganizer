@@ -11,7 +11,7 @@ import CoreData
 
 class FirstViewController: UITableViewController, CreateTaskViewControllerDelegate {
     
-    
+    //MARK:- Protocol Classes Defined
     var dailyTasksList = [DailyTask]()
     
     func didAddTask(myTaskItem: DailyTask){
@@ -21,46 +21,41 @@ class FirstViewController: UITableViewController, CreateTaskViewControllerDelega
         tableView.insertRows(at: [newIndexPath], with: .left)
     }
     
-    
     func didEditTask(myTaskItem: DailyTask){
         print("DID EDIT TASK CALLED")
-        
         let row = dailyTasksList.index(of: myTaskItem)
-        
         dailyTasksList[row!].name = myTaskItem.name
         tableView.reloadData()
-        
     }
     
     
-    func setupNavigationBar(){
+    //MARK:- My Functions
+    private func setupNavigationBar(){
         navigationItem.title = "FirstViewController"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(handleSettings))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "plus"), style: .plain, target: self, action: #selector(handleAdd))
     }
     
-    @objc func handleAdd(){
+    @objc private func handleAdd(){
         let myCreateTaskViewController = CreateTaskViewController()
         myCreateTaskViewController.delegate = self
         let myNavController = UINavigationController(rootViewController: myCreateTaskViewController)
         present(myNavController, animated: true)
     }
     
-    @objc func handleSettings(){
+    @objc private func handleSettings(){
         let myNavController = UINavigationController(rootViewController: SettingsViewController())
         present(myNavController, animated: true)
     }
     
     
-    //MARK: ViewController Class Functions
+    //MARK:- Swift Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.backgroundColor = UIColor.white
         setupNavigationBar()
-        
         let context = CoreDataManager.shared.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<DailyTask>(entityName: "DailyTask")
-        
         do {
             let tempTasks = try context.fetch(fetchRequest)
             self.dailyTasksList = tempTasks

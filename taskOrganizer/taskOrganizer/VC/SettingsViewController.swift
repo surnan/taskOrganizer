@@ -11,7 +11,7 @@ import UIKit
 class SettingsViewController: UIViewController{
     
     
-    func setupNavigationMenu() {
+    private func setupNavigationMenu() {
         print("test")
         
         navigationItem.title = "SETTINGS"
@@ -19,11 +19,11 @@ class SettingsViewController: UIViewController{
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "SAVE", style: .done, target: self, action: #selector(handleSave))
     }
     
-    @objc func handleCancel(){
+    @objc private func handleCancel(){
         self.dismiss(animated: true, completion: nil)
     }
     
-    @objc func handleSave(){
+    @objc private func handleSave(){
         self.dismiss(animated: true, completion: nil)
     }
     

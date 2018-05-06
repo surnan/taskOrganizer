@@ -59,7 +59,7 @@ class CreateTaskViewController: UIViewController {
     }()
     
     //MARK:- My Functions
-    @objc func handleAddOrSave(){
+    @objc private func handleAddOrSave(){
         let context = CoreDataManager.shared.persistentContainer.viewContext
         
         if dailyTask == nil {
@@ -89,11 +89,11 @@ class CreateTaskViewController: UIViewController {
         }
     }
     
-    @objc func handleCancel(){ self.dismiss(animated: true, completion: nil)}
+    @objc private func handleCancel(){ self.dismiss(animated: true, completion: nil)}
 
     
     //MARK:- Setting up UI
-    func organizeUI(){
+    private func organizeUI(){
         [ backgroundView, nameLabel, nameTextField, dateField].forEach{view.addSubview($0)}
         
         backgroundView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
@@ -112,7 +112,7 @@ class CreateTaskViewController: UIViewController {
         dateField.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor).isActive = true
     }
     
-    func setupNavigationBar(){
+    private func setupNavigationBar(){
         navigationItem.title = dailyTask == nil ? "Create" : "Edit"
         let rightButtonStr = dailyTask == nil ? "Add" : "Save"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: rightButtonStr, style: .plain, target: self, action: #selector(handleAddOrSave))
