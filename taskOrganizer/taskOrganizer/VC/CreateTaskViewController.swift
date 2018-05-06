@@ -61,7 +61,6 @@ class CreateTaskViewController: UIViewController {
     //MARK:- My Functions
     @objc private func handleAddOrSave(){
         let context = CoreDataManager.shared.persistentContainer.viewContext
-        
         if dailyTask == nil {
             let tempTask = NSEntityDescription.insertNewObject(forEntityName: "DailyTask", into: context)
             tempTask.setValue(nameTextField.text!, forKey: "name")
@@ -128,28 +127,3 @@ class CreateTaskViewController: UIViewController {
         organizeUI()
     }
 }
-
-
-
-
-
-/*
- var backButton : UIButton = {
- var myButton = UIButton()
- myButton.setTitle("CLICK ME", for: .normal)
- myButton.setTitleColor(.black, for: .normal)
- myButton.addTarget(self, action: #selector(handleMyButton), for: .touchUpInside)
- myButton.translatesAutoresizingMaskIntoConstraints = false
- return myButton
- }()
- 
- backButton.target(forAction: #selector(handleMyButton), withSender: nil)
- backButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
- backButton.topAnchor.constraint(equalTo: nameLabel.topAnchor, constant: 50).isActive = true
- 
- //    @objc func handleMyButton(){
- //        print("BUTTON PRESSED")
- //        self.dismiss(animated: true, completion: nil)
- //    }
- */
-

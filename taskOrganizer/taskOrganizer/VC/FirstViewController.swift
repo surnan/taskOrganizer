@@ -15,7 +15,6 @@ class FirstViewController: UITableViewController, CreateTaskViewControllerDelega
     var dailyTasksList = [DailyTask]()
     
     func didAddTask(myTaskItem: DailyTask){
-        print("DID ADD TASK CALLED")
         dailyTasksList.append(myTaskItem)
         let newIndexPath = IndexPath(row: dailyTasksList.count - 1, section: 0)
         tableView.insertRows(at: [newIndexPath], with: .left)
@@ -48,7 +47,6 @@ class FirstViewController: UITableViewController, CreateTaskViewControllerDelega
         present(myNavController, animated: true)
     }
     
-    
     //MARK:- Swift Functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,9 +54,18 @@ class FirstViewController: UITableViewController, CreateTaskViewControllerDelega
         setupNavigationBar()
         let context = CoreDataManager.shared.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<DailyTask>(entityName: "DailyTask")
+
+        
+//        let sort11 = NSSortDescriptor(key: #keyPath(DailyTask.name), ascending: true)
+//        fetchRequest.sortDescriptors = [sort11]
+        
+        
         do {
             let tempTasks = try context.fetch(fetchRequest)
             self.dailyTasksList = tempTasks
+            
+            self.dailyTasksList.sort(by: {$0 < $1})
+            
             self.tableView.reloadData()
         } catch let err {
             print("Error fetching data \(err)")
@@ -66,3 +73,4 @@ class FirstViewController: UITableViewController, CreateTaskViewControllerDelega
         self.tableView.register(DailyTaskCell.self, forCellReuseIdentifier: "MyCell")
     }
 }
+

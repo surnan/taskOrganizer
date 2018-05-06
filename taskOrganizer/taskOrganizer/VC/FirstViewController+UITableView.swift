@@ -21,7 +21,7 @@ extension FirstViewController {
         temp.nameLabel.text = dailyTasksList[indexPath.row].name
         temp.nameLabel.font = UIFont.boldSystemFont(ofSize: 16)
         let myDateFormatter = DateFormatter()
-        myDateFormatter.dateFormat = "HH:mm"
+        myDateFormatter.dateFormat = "HH:mm a"
          temp.dateLabel.text = myDateFormatter.string(from: dailyTasksList[indexPath.row].time!)
         return temp
     }
@@ -38,7 +38,6 @@ extension FirstViewController {
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (_, indexPath) in
-            //Delete Action - Start
             let tempTask = self.dailyTasksList[indexPath.row]
             self.dailyTasksList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .left)
@@ -53,20 +52,12 @@ extension FirstViewController {
             }
         }
         deleteAction.backgroundColor = UIColor.lightRed
-        //Delete Action - Finish
-
         let editAction = UITableViewRowAction(style: .normal, title: "Edit", handler: editHandlerFunction)
         editAction.backgroundColor = UIColor.darkBlue
-        
         let taskAction = UITableViewRowAction(style: .normal, title: "Task", handler: taskHandlerFunction)
-        
         taskAction.backgroundColor = UIColor.mediumPurple
-        
-        
-        
         return [deleteAction, taskAction, editAction]
     }
-
 
     private func editHandlerFunction(action: UITableViewRowAction, indexPath: IndexPath) {
         print("Edit Selected")
@@ -78,30 +69,8 @@ extension FirstViewController {
         self.present(myNavigationController, animated: true, completion: nil)
     }
     
-    
     private func taskHandlerFunction(action: UITableViewRowAction, indexPath: IndexPath) {
         print("taskHandlerActionSelected")
     }
     
-    
-    
-    
-    
-    
 }
-
-
-/*
- let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (_, indexPath) in
- print("Edit Selected")
- let myDailyTask = self.dailyTasksList[indexPath.row]
- let myCreateTaskViewController = CreateTaskViewController()
- myCreateTaskViewController.dailyTask = myDailyTask
- myCreateTaskViewController.delegate = self
- let myNavigationController = UINavigationController(rootViewController: myCreateTaskViewController)
- self.present(myNavigationController, animated: true, completion: nil)
- }
- editAction.backgroundColor = UIColor.darkBlue
- //Edit Action - Finish
- */
-
