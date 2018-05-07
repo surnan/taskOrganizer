@@ -16,7 +16,10 @@ class FirstViewController: UITableViewController, CreateTaskViewControllerDelega
     
     func didAddTask(myTaskItem: DailyTask){
         dailyTasksList.append(myTaskItem)
-        let newIndexPath = IndexPath(row: dailyTasksList.count - 1, section: 0)
+       self.dailyTasksList.sort(by: {$0 < $1})
+        let row = dailyTasksList.index(of: myTaskItem)
+        let newIndexPath = IndexPath(row: row!, section: 0)
+//        let newIndexPath = IndexPath(row: dailyTasksList.count - 1, section: 0)  //Insert row at bottom
         tableView.insertRows(at: [newIndexPath], with: .left)
     }
     
