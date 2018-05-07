@@ -65,7 +65,7 @@ class CreateTaskViewController: UIViewController {
             let tempTask = NSEntityDescription.insertNewObject(forEntityName: "DailyTask", into: context)
             tempTask.setValue(nameTextField.text!, forKey: "name")
             tempTask.setValue(true, forKey: "completed")
-            tempTask.setValue(Date(), forKey: "time")
+            tempTask.setValue(dateField.date, forKey: "time")
             do {
                 try context.save()
                 dismiss(animated: true) {
