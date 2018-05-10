@@ -20,7 +20,7 @@ class FirstViewController: UITableViewController, CreateTaskViewControllerDelega
         let row = dailyTasksList.index(of: myTaskItem)
         let newIndexPath = IndexPath(row: row!, section: 0)
 //        let newIndexPath = IndexPath(row: dailyTasksList.count - 1, section: 0)  //Insert row at bottom
-        tableView.insertRows(at: [newIndexPath], with: .left)
+        tableView.insertRows(at: [newIndexPath], with: .middle)
     }
     
     func didEditTask(myTaskItem: DailyTask){
@@ -33,11 +33,73 @@ class FirstViewController: UITableViewController, CreateTaskViewControllerDelega
     
     //MARK:- My Functions
     private func setupNavigationBar(){
-        navigationItem.title = "FirstViewController"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(handleSettings))
+        navigationItem.title = "TASK LIST"
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(handleSettings))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Delete All", style: .plain, target: self, action: #selector(handleDeleteAll))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "plus"), style: .plain, target: self, action: #selector(handleAdd))
     }
+
+    /*
+    @objc private func handleDeleteAll(){
+        let context = CoreDataManager.shared.persistentContainer.viewContext
+//      BELOW WORKS - but doesn't have nice animation
+        dailyTasksList.forEach { (task) in
+            context.delete(task)
+        }
+        do {
+            try context.save()
+            var indexPathToDelete = [IndexPath]()
+            for (index, _) in dailyTasksList.enumerated() {
+                let myIndexPath = IndexPath(row: index, section: 0)
+                indexPathToDelete.append(myIndexPath)
+            }
+            dailyTasksList.removeAll()
+            tableView.deleteRows(at: indexPathToDelete, with: .right)
+//            tableView.reloadData() //works but doesn't have animation
+        } catch let saveErr {
+            print("Could't save after deleting all core data entries: \(saveErr)")
+        }
+    }
+ */
+
+    @objc private func handleDeleteAll() {
+        print("Attempting to delete all core data objects")
+        
+        let context = CoreDataManager.shared.persistentContainer.viewContext
+        
+        //        companies.forEach { (company) in
+        //            context.delete(company)
+        //        }
+        
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: DailyTask.fetchRequest())
+        
+        do {
+            try context.execute(batchDeleteRequest)
+            
+            // upon deletion from core data succeeded
+            
+            var indexPathsToRemove = [IndexPath]()
+            
+            for (index, _) in dailyTasksList.enumerated() {
+                let indexPath = IndexPath(row: index, section: 0)
+                indexPathsToRemove.append(indexPath)
+            }
+            dailyTasksList.removeAll()
+            tableView.deleteRows(at: indexPathsToRemove, with: .left)
+        } catch let delErr {
+            print("Failed to delete objects from Core Data:", delErr)
+        }
+        
+    }
     
+    
+    
+    
+    
+    
+    
+    
+
     @objc private func handleAdd(){
         let myCreateTaskViewController = CreateTaskViewController()
         myCreateTaskViewController.delegate = self
@@ -46,6 +108,7 @@ class FirstViewController: UITableViewController, CreateTaskViewControllerDelega
     }
     
     @objc private func handleSettings(){
+//        self.tableView.isEditing = true  //Creates the red circles in left column for editing
         let myNavController = UINavigationController(rootViewController: SettingsViewController())
         present(myNavController, animated: true)
     }
@@ -57,18 +120,12 @@ class FirstViewController: UITableViewController, CreateTaskViewControllerDelega
         setupNavigationBar()
         let context = CoreDataManager.shared.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<DailyTask>(entityName: "DailyTask")
-
-        
 //        let sort11 = NSSortDescriptor(key: #keyPath(DailyTask.name), ascending: true)
 //        fetchRequest.sortDescriptors = [sort11]
-        
-        
         do {
             let tempTasks = try context.fetch(fetchRequest)
             self.dailyTasksList = tempTasks
-            
-            self.dailyTasksList.sort(by: {$0 < $1})
-            
+//            self.dailyTasksList.sort(by: {$0 < $1})
             self.tableView.reloadData()
         } catch let err {
             print("Error fetching data \(err)")

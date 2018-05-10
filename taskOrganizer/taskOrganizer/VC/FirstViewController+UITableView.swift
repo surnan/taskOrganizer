@@ -32,6 +32,19 @@ extension FirstViewController {
         return myView
     }
     
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let myLabel = UILabel()
+        myLabel.textColor = UIColor.white
+        myLabel.backgroundColor = UIColor.black
+        myLabel.textAlignment = .center
+        myLabel.text = "Please enter a task ...."
+        return myLabel
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return dailyTasksList.count == 0 ? 250 : 0
+    }
+    
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
     }
@@ -41,7 +54,6 @@ extension FirstViewController {
             let tempTask = self.dailyTasksList[indexPath.row]
             self.dailyTasksList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .left)
-            
             let context = CoreDataManager.shared.persistentContainer.viewContext
             //            let tempTask = self.dailyTasksList[indexPath.row]  <---- weird errors if you declare it here instead
             context.delete(tempTask)
@@ -71,6 +83,11 @@ extension FirstViewController {
     
     private func taskHandlerFunction(action: UITableViewRowAction, indexPath: IndexPath) {
         print("taskHandlerActionSelected")
+        let myComponentViewController = ComponentViewController()
+        navigationController?.pushViewController(myComponentViewController, animated: true)
     }
     
+    override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
 }

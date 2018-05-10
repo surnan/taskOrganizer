@@ -52,7 +52,4 @@ extension DailyTask {
         let rightSide = dateFormatter2.string(from: rhs.time!)
         return leftSide >= rightSide
     }
-    
-    
-    
 }
