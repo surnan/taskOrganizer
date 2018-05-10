@@ -22,6 +22,7 @@ class FirstViewController: UITableViewController, CreateTaskViewControllerDelega
 //        let newIndexPath = IndexPath(row: dailyTasksList.count - 1, section: 0)  //Insert row at bottom
         tableView.insertRows(at: [newIndexPath], with: .middle)
     }
+
     
     func didEditTask(myTaskItem: DailyTask){
         print("DID EDIT TASK CALLED")
@@ -39,7 +40,7 @@ class FirstViewController: UITableViewController, CreateTaskViewControllerDelega
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "plus"), style: .plain, target: self, action: #selector(handleAdd))
     }
 
-    /*
+    
     @objc private func handleDeleteAll(){
         let context = CoreDataManager.shared.persistentContainer.viewContext
 //      BELOW WORKS - but doesn't have nice animation
@@ -60,45 +61,6 @@ class FirstViewController: UITableViewController, CreateTaskViewControllerDelega
             print("Could't save after deleting all core data entries: \(saveErr)")
         }
     }
- */
-
-    @objc private func handleDeleteAll() {
-        print("Attempting to delete all core data objects")
-        
-        let context = CoreDataManager.shared.persistentContainer.viewContext
-        
-        //        companies.forEach { (company) in
-        //            context.delete(company)
-        //        }
-        
-        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: DailyTask.fetchRequest())
-        
-        do {
-            try context.execute(batchDeleteRequest)
-            
-            // upon deletion from core data succeeded
-            
-            var indexPathsToRemove = [IndexPath]()
-            
-            for (index, _) in dailyTasksList.enumerated() {
-                let indexPath = IndexPath(row: index, section: 0)
-                indexPathsToRemove.append(indexPath)
-            }
-            dailyTasksList.removeAll()
-            tableView.deleteRows(at: indexPathsToRemove, with: .left)
-        } catch let delErr {
-            print("Failed to delete objects from Core Data:", delErr)
-        }
-        
-    }
-    
-    
-    
-    
-    
-    
-    
-    
 
     @objc private func handleAdd(){
         let myCreateTaskViewController = CreateTaskViewController()

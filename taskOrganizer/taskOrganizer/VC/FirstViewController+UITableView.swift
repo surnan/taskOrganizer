@@ -31,6 +31,11 @@ extension FirstViewController {
         myView.backgroundColor = UIColor.lightBlue
         return myView
     }
+
+
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
     
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let myLabel = UILabel()
@@ -40,14 +45,12 @@ extension FirstViewController {
         myLabel.text = "Please enter a task ...."
         return myLabel
     }
-    
+
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return dailyTasksList.count == 0 ? 250 : 0
+        return dailyTasksList.count == 0 ? 50 : 0  //if the "50" is much larger, we lose the animation
     }
     
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
-    }
+ 
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (_, indexPath) in
