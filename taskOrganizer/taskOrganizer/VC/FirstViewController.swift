@@ -11,25 +11,7 @@ import CoreData
 
 class FirstViewController: UITableViewController, CreateTaskViewControllerDelegate {
     
-    //MARK:- Protocol Classes Defined
     var dailyTasksList = [DailyTask]()
-    
-    func didAddTask(myTaskItem: DailyTask){
-        dailyTasksList.append(myTaskItem)
-       self.dailyTasksList.sort(by: {$0 < $1})
-        let row = dailyTasksList.index(of: myTaskItem)
-        let newIndexPath = IndexPath(row: row!, section: 0)
-//        let newIndexPath = IndexPath(row: dailyTasksList.count - 1, section: 0)  //Insert row at bottom
-        tableView.insertRows(at: [newIndexPath], with: .middle)
-    }
-
-    
-    func didEditTask(myTaskItem: DailyTask){
-        print("DID EDIT TASK CALLED")
-        let row = dailyTasksList.index(of: myTaskItem)
-        dailyTasksList[row!].name = myTaskItem.name
-        tableView.reloadData()
-    }
     
     
     //MARK:- My Functions
@@ -50,6 +32,7 @@ class FirstViewController: UITableViewController, CreateTaskViewControllerDelega
         do {
             try context.save()
             var indexPathToDelete = [IndexPath]()
+            //indexOf returns an optional.  Less drama to use this method to pull index for all
             for (index, _) in dailyTasksList.enumerated() {
                 let myIndexPath = IndexPath(row: index, section: 0)
                 indexPathToDelete.append(myIndexPath)

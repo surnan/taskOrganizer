@@ -12,6 +12,12 @@ import CoreData
 extension FirstViewController {
     
     //MARK: UITableView function
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let myComponentVC = ComponentViewController()
+        navigationController?.pushViewController(myComponentVC, animated: true)
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dailyTasksList.count
     }

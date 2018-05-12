@@ -12,7 +12,12 @@ class ComponentViewController:UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.yellow
+        view.backgroundColor = UIColor.white
+        
+        
+        
+        
+        
     }
     
     
