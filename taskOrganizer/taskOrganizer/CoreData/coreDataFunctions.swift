@@ -23,4 +23,5 @@ struct CoreDataManager {
         let context = myContainer.viewContext
         return myContainer
     }()
+    
 }

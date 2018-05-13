@@ -23,6 +23,8 @@
 		84D9C5A720883A810072EEED /* DailyTaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D9C5A620883A810072EEED /* DailyTaskCell.swift */; };
 		84D9C5A92088AD090072EEED /* FirstViewController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D9C5A82088AD090072EEED /* FirstViewController+UITableView.swift */; };
 		84E27B8020A51BC000B39805 /* FirstViewController+CreateTaskViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E27B7F20A51BC000B39805 /* FirstViewController+CreateTaskViewControllerDelegate.swift */; };
+		84E27B8220A7797500B39805 /* CreateComponentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E27B8120A7797500B39805 /* CreateComponentViewController.swift */; };
+		84E27B8420A7938E00B39805 /* Helper_Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E27B8320A7938E00B39805 /* Helper_Functions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 		84D9C5A620883A810072EEED /* DailyTaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTaskCell.swift; sourceTree = "<group>"; };
 		84D9C5A82088AD090072EEED /* FirstViewController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirstViewController+UITableView.swift"; sourceTree = "<group>"; };
 		84E27B7F20A51BC000B39805 /* FirstViewController+CreateTaskViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirstViewController+CreateTaskViewControllerDelegate.swift"; sourceTree = "<group>"; };
+		84E27B8120A7797500B39805 /* CreateComponentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateComponentViewController.swift; sourceTree = "<group>"; };
+		84E27B8320A7938E00B39805 /* Helper_Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper_Functions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +109,7 @@
 				84552A6B207F0CD400CE87D0 /* CreateTaskViewController.swift */,
 				84D9C5A620883A810072EEED /* DailyTaskCell.swift */,
 				844589B820A1352E00FEBE82 /* ComponentViewController.swift */,
+				84E27B8120A7797500B39805 /* CreateComponentViewController.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -125,6 +130,7 @@
 				8441DEF2208D54BF00741FC3 /* DummyTaskStruct.swift */,
 				84D9C59D208824BA0072EEED /* UINavigationController_Ext.swift */,
 				84D9C59B208821680072EEED /* UIColor+theme.swift */,
+				84E27B8320A7938E00B39805 /* Helper_Functions.swift */,
 			);
 			path = Extras;
 			sourceTree = "<group>";
@@ -209,8 +215,10 @@
 				84E27B8020A51BC000B39805 /* FirstViewController+CreateTaskViewControllerDelegate.swift in Sources */,
 				84552A57207EFCAE00CE87D0 /* AppDelegate.swift in Sources */,
 				84D9C5A720883A810072EEED /* DailyTaskCell.swift in Sources */,
+				84E27B8420A7938E00B39805 /* Helper_Functions.swift in Sources */,
 				8441DEF3208D54BF00741FC3 /* DummyTaskStruct.swift in Sources */,
 				84D9C5A1208826280072EEED /* DailyTaskDefinitionFile.xcdatamodeld in Sources */,
+				84E27B8220A7797500B39805 /* CreateComponentViewController.swift in Sources */,
 				844589B920A1352E00FEBE82 /* ComponentViewController.swift in Sources */,
 				84D9C59C208821680072EEED /* UIColor+theme.swift in Sources */,
 				84D9C59A2086C9EE0072EEED /* SettingsViewController.swift in Sources */,
