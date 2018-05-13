@@ -39,7 +39,15 @@ extension ComponentViewController {
     }
 
     private func deleteHandlerFunction(action: UITableViewRowAction, indexPath: IndexPath) {
-        let myComponentViewController = ComponentViewController()
-        navigationController?.pushViewController(myComponentViewController, animated: true)
+            let tempComponent = componentList[indexPath.row]
+            componentList.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .left)
+            let context = CoreDataManager.shared.persistentContainer.viewContext
+            context.delete(tempComponent)
+            do {
+                try context.save()
+            } catch let delError {
+                fatalError("Unable to save context after object deletion \(delError)")
+            }
     }
 }

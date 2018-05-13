@@ -13,23 +13,6 @@ class ComponentViewController:UITableViewController, CreateComponentViewControll
     
     var componentList = [Component]()
     
-//    //MARK:- CreateTaskViewControllerDelegate Protocol Functions
-//    func didAddComponent(myComponent: Component){
-//        print("test")
-//        componentList.append(myComponent)
-//        let tempIndexPath = IndexPath(row: componentList.count - 1, section: 0)
-//        tableView.insertRows(at: [tempIndexPath], with: .left)
-//    }
-//    
-//    func didEditComponent(myComponent: Component){
-//        print("test")
-//        
-//        if let row = componentList.index(of: myComponent) {
-//            componentList[row] = myComponent
-//            tableView.reloadData()
-//        }
-//    }
-
     //MARK:- UI Functions
     private func setupUI(){
         navigationItem.title = "Components"
