@@ -43,15 +43,23 @@ class ComponentViewController:UITableViewController, CreateComponentViewControll
         view.backgroundColor = UIColor.white
         setupUI()
         
-        let context = CoreDataManager.shared.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<Component>(entityName: "Component")
-        do {
-            let tempTasks = try context.fetch(fetchRequest)
-            self.componentList = tempTasks
-            self.tableView.reloadData()
-        } catch let err {
-            print("Error fetching data \(err)")
-        }
+//        let context = CoreDataManager.shared.persistentContainer.viewContext
+//        let fetchRequest = NSFetchRequest<Component>(entityName: "Component")
+//        do {
+//            let tempTasks = try context.fetch(fetchRequest)
+//            self.componentList = tempTasks
+//            self.tableView.reloadData()
+//        } catch let err {
+//            print("Error fetching data \(err)")
+//        }
+
+        
+        componentList = currentDailyTask?.linkComponent?.allObjects as! [Component]
+        
+        
+        
+        
+        
         self.tableView.register(DailyTaskCell.self, forCellReuseIdentifier: "MyCompanyCell")
     }
 }

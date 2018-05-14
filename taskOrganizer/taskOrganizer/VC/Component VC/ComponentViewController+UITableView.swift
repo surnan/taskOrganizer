@@ -21,7 +21,8 @@ extension ComponentViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tempTableViewCell = UITableViewCell()
         tempTableViewCell.textLabel?.textColor = UIColor.black
-        let tempString = "\(componentList[indexPath.row].name ?? "")  .... \(componentList[indexPath.row].linkDailyTask?.name ?? "")"
+//        let tempString = "\(componentList[indexPath.row].name ?? "")  .... \(componentList[indexPath.row].linkDailyTask?.name ?? "")"
+        let tempString = "\(componentList[indexPath.row].name ?? "")"
         tempTableViewCell.textLabel?.text = tempString
         return tempTableViewCell
     }
