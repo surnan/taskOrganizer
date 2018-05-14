@@ -66,22 +66,22 @@ class CreateComponentViewController:UIViewController {
     
     
     private func setupNavigationBar(){
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(handleSave))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(handleAddOrSave))
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "CANCEL", style: .plain, target: self, action: #selector(handleCancel))
         navigationItem.title = component == nil ? "Create Component" : component?.name
     }
     
-    @objc private func handleSave(){
+    @objc private func handleAddOrSave(){
         if component == nil {
             let context = CoreDataManager.shared.persistentContainer.viewContext
             let tempComponent = NSEntityDescription.insertNewObject(forEntityName: "Component", into: context)
             tempComponent.setValue(nameTextField.text, forKey: "name")
+            tempComponent.setValue(currentDailyTask, forKey: "linkDailyTask")
             do {
                 try context.save()
             } catch let saveErr {
                 print("Error saving New Component to CoreData \(saveErr)")
             }
-            
             self.dismiss(animated: true) {
                 self.delegate?.didAddComponent(myComponent: tempComponent as! Component)
             }
