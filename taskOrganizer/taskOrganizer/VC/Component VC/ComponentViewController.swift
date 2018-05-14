@@ -12,18 +12,23 @@ import CoreData
 class ComponentViewController:UITableViewController, CreateComponentViewControllerDelegate {
     
     var componentList = [Component]()
+    var currentDailyTask: DailyTask?
     
     //MARK:- UI Functions
     private func setupUI(){
-        navigationItem.title = "Components"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(handleAdd))
+        
+        if let taskName = currentDailyTask?.name {
+            navigationItem.title = taskName
+        }
     }
     
     @objc private func handleAdd(){
         print("Add selected")
         let myCreateComponentViewController = CreateComponentViewController()
         myCreateComponentViewController.delegate = self
+        myCreateComponentViewController.currentDailyTask = currentDailyTask
         let myNavController = UINavigationController(rootViewController: myCreateComponentViewController)
         present(myNavController, animated: true)
     }

@@ -10,11 +10,19 @@ import UIKit
 
 extension ComponentViewController {
     
+    
+    //        var componentList = [Component]()
+    //        var currentDailyTask: DailyTask?
+
+    
+    
+    
     //MARK:- TableView
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tempTableViewCell = UITableViewCell()
         tempTableViewCell.textLabel?.textColor = UIColor.black
-        tempTableViewCell.textLabel?.text = componentList[indexPath.row].name
+        let tempString = "\(componentList[indexPath.row].name ?? "")  .... "
+        tempTableViewCell.textLabel?.text = tempString
         return tempTableViewCell
     }
     

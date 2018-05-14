@@ -15,6 +15,7 @@ extension FirstViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let myComponentVC = ComponentViewController()
+        myComponentVC.currentDailyTask = dailyTasksList[indexPath.row]
         navigationController?.pushViewController(myComponentVC, animated: true)
     }
     

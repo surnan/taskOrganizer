@@ -9,12 +9,14 @@
 import UIKit
 import CoreData
 
+//        var componentList = [Component]()
+//        var currentDailyTask: DailyTask?
+
 
 protocol CreateComponentViewControllerDelegate {
     func didAddComponent(myComponent: Component)
     func didEditComponent(myComponent: Component)
 }
-
 
 
 class CreateComponentViewController:UIViewController {
@@ -41,6 +43,7 @@ class CreateComponentViewController:UIViewController {
     
     
     var delegate: CreateComponentViewControllerDelegate?
+    var currentDailyTask: DailyTask?
     
     var component: Component? {
         didSet {
@@ -51,7 +54,6 @@ class CreateComponentViewController:UIViewController {
     //MARK:- UI Functions
     private func setupUI(){
         [backgroundView, nameLabel, nameTextField].forEach{view.addSubview($0)}
-        
         backgroundView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         backgroundView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         backgroundView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
