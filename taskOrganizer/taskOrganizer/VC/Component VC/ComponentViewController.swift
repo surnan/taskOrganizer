@@ -27,6 +27,7 @@ class ComponentViewController:UITableViewController, CreateComponentViewControll
     
     @objc private func handleReOrder(){
         changeDirection = !changeDirection
+        self.tableView.isEditing = !changeDirection
     }
     
     
@@ -43,7 +44,7 @@ class ComponentViewController:UITableViewController, CreateComponentViewControll
 //    @objc private func handleAdd(){
 //        self.navigationItem.rightBarButtonItem = self.editButtonItem
 //    }
-//
+
     
     @objc private func handleCancel(){
         navigationController?.popViewController(animated: true)
@@ -68,4 +69,29 @@ class ComponentViewController:UITableViewController, CreateComponentViewControll
         componentList = currentDailyTask?.linkComponent?.allObjects as! [Component]
         self.tableView.register(DailyTaskCell.self, forCellReuseIdentifier: "MyCompanyCell")
     }
+    
+    
+    //MARK:- Desperation
+//    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+//        return .none
+//    }
+//
+    override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let movedObject = self.componentList[sourceIndexPath.row]
+        componentList.remove(at: sourceIndexPath.row)
+        componentList.insert(movedObject, at: destinationIndexPath.row)
+        NSLog("%@", "\(sourceIndexPath.row) => \(destinationIndexPath.row) \(componentList)")
+        // To check for correctness enable: self.tableView.reloadData()
+    }
+    
+    
+    
+    
+    
+    
 }
