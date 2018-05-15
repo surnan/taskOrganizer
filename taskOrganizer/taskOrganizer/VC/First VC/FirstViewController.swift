@@ -23,6 +23,7 @@ class FirstViewController: UITableViewController, CreateTaskViewControllerDelega
     }
 
     
+
     @objc private func handleDeleteAll(){
         let context = CoreDataManager.shared.persistentContainer.viewContext
 //      BELOW WORKS - but doesn't have nice animation
@@ -44,6 +45,7 @@ class FirstViewController: UITableViewController, CreateTaskViewControllerDelega
             print("Could't save after deleting all core data entries: \(saveErr)")
         }
     }
+    
 
     @objc private func handleAdd(){
         let myCreateTaskViewController = CreateTaskViewController()
@@ -71,6 +73,7 @@ class FirstViewController: UITableViewController, CreateTaskViewControllerDelega
             let tempTasks = try context.fetch(fetchRequest)
             self.dailyTasksList = tempTasks
 //            self.dailyTasksList.sort(by: {$0 < $1})
+            
             self.tableView.reloadData()
         } catch let err {
             print("Error fetching data \(err)")

@@ -15,15 +15,46 @@ extension ComponentViewController {
     //    var currentDailyTask: DailyTask?
     //    var changeDirection = false
     
-        
+    
     //MARK:- TableView
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let tempTableViewCell = UITableViewCell()
+        let tempTableViewCell = tableView.dequeueReusableCell(withIdentifier: "MyCompanyCell") as! ComponentCell
         tempTableViewCell.textLabel?.textColor = UIColor.black
-//        let tempString = "\(componentList[indexPath.row].name ?? "")  .... \(componentList[indexPath.row].linkDailyTask?.name ?? "")"
-        let tempString = "\(componentList[indexPath.row].name ?? "")"
-        tempTableViewCell.textLabel?.text = tempString
+        tempTableViewCell.nameLabel.text = componentList[indexPath.row].name
+        
+        
+        
+        tempTableViewCell.buttonDown.tag = indexPath.row
+        
+        tempTableViewCell.buttonUp.addTarget(self, action: #selector(handleUp), for: .touchUpInside)
+        //        tempTableViewCell.buttonDown.addTarget(self, action: #selector(handleDown(a:)), for: .touchUpInside)
+        
+        
+        tempTableViewCell.buttonDown.addTarget(self, action: #selector(handleDown(sender:)), for: .touchUpInside)
+        
+        
         return tempTableViewCell
+    }
+    
+    @objc private func handleUp(){
+        print("up")
+    }
+    
+    @objc func handleDown(sender: UIButton){
+        print("down --- \(sender.tag)")
+        
+        
+        tableView.beginUpdates()
+        
+        let indexPath1 = IndexPath(row: sender.tag + 1, section: 0)
+        let indexPath2 = IndexPath(row: sender.tag, section: 0)
+        
+        tableView.moveRow(at: indexPath1, to: indexPath2)
+        tableView.moveRow(at: indexPath2, to: indexPath1)
+        tableView.endUpdates()
+        
+        
+        
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -31,7 +62,7 @@ extension ComponentViewController {
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        if !changeDirection {
+        if changeDirection {
             let editRow = UITableViewRowAction(style: .normal, title: "Details", handler: detailsHandlerFunction)
             let deleteRow = UITableViewRowAction(style: .normal, title: "Delete", handler: deleteHandlerFunction)
             deleteRow.backgroundColor = UIColor.red; editRow.backgroundColor = UIColor.teal
@@ -43,8 +74,6 @@ extension ComponentViewController {
             return [deleteRow, editRow]
         }
     }
-    
-    
     
     private func upHandlerFunction(action: UITableViewRowAction, myIndexPath: IndexPath){
         tableView.beginUpdates()
@@ -77,17 +106,37 @@ extension ComponentViewController {
         let myNavigationController = UINavigationController(rootViewController: myCreateComponentViewController)
         self.present(myNavigationController, animated: true)
     }
-
+    
     private func deleteHandlerFunction(action: UITableViewRowAction, indexPath: IndexPath) {
-            let tempComponent = componentList[indexPath.row]
-            componentList.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .left)
-            let context = CoreDataManager.shared.persistentContainer.viewContext
-            context.delete(tempComponent)
-            do {
-                try context.save()
-            } catch let delError {
-                fatalError("Unable to save context after object deletion \(delError)")
-            }
+        let tempComponent = componentList[indexPath.row]
+        componentList.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .left)
+        let context = CoreDataManager.shared.persistentContainer.viewContext
+        context.delete(tempComponent)
+        do {
+            try context.save()
+        } catch let delError {
+            fatalError("Unable to save context after object deletion \(delError)")
+        }
     }
+    
+    
+    //MARK:- Desperation
+//    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+//        return .none
+//    }
+//
+//    override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+//        return false
+//    }
+    
+    
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let movedObject = self.componentList[sourceIndexPath.row]
+        componentList.remove(at: sourceIndexPath.row)
+        componentList.insert(movedObject, at: destinationIndexPath.row)
+        //        NSLog("%@", "\(sourceIndexPath.row) => \(destinationIndexPath.row) \(componentList)")
+        // To check for correctness enable: self.tableView.reloadData()
+    }
+    
 }

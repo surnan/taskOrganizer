@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		843CADF920AAF8B00087C46A /* ComponentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CADF820AAF8B00087C46A /* ComponentCell.swift */; };
 		8441DEF3208D54BF00741FC3 /* DummyTaskStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441DEF2208D54BF00741FC3 /* DummyTaskStruct.swift */; };
 		8441DEF520901A7C00741FC3 /* coreDataFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441DEF420901A7C00741FC3 /* coreDataFunctions.swift */; };
 		844589B7209FC42600FEBE82 /* DailyTask + Operator Override.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844589B6209FC42600FEBE82 /* DailyTask + Operator Override.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		843CADF820AAF8B00087C46A /* ComponentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentCell.swift; sourceTree = "<group>"; };
 		8441DEF2208D54BF00741FC3 /* DummyTaskStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyTaskStruct.swift; sourceTree = "<group>"; };
 		8441DEF420901A7C00741FC3 /* coreDataFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = coreDataFunctions.swift; sourceTree = "<group>"; };
 		844589B6209FC42600FEBE82 /* DailyTask + Operator Override.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DailyTask + Operator Override.swift"; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				84E27B8820A8943900B39805 /* ComponentViewController+UITableView.swift */,
 				84E27B8120A7797500B39805 /* CreateComponentViewController.swift */,
 				84E27B8A20A8A4C300B39805 /* ComponentViewController+CreateComponentViewControllerDelegate.swift */,
+				843CADF820AAF8B00087C46A /* ComponentCell.swift */,
 			);
 			path = "Component VC";
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 				84552A69207EFD2E00CE87D0 /* FirstViewController.swift in Sources */,
 				84D9C59E208824BA0072EEED /* UINavigationController_Ext.swift in Sources */,
 				84D9C5A92088AD090072EEED /* FirstViewController+UITableView.swift in Sources */,
+				843CADF920AAF8B00087C46A /* ComponentCell.swift in Sources */,
 				84E27B8B20A8A4C300B39805 /* ComponentViewController+CreateComponentViewControllerDelegate.swift in Sources */,
 				8441DEF520901A7C00741FC3 /* coreDataFunctions.swift in Sources */,
 				844589B7209FC42600FEBE82 /* DailyTask + Operator Override.swift in Sources */,
