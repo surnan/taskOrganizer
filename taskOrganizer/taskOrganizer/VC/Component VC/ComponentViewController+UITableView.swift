@@ -53,7 +53,7 @@ extension ComponentViewController {
         tableView.moveRow(at: indexPath2, to: indexPath1)
         tableView.endUpdates()
         
-        
+        //edit added just to give me an opportunity to further clarify the previous commit
         
     }
     
