@@ -13,16 +13,22 @@ class ComponentViewController:UITableViewController, CreateComponentViewControll
     
     var componentList = [Component]()
     var currentDailyTask: DailyTask?
-    
+    var changeDirection = false
+
     //MARK:- UI Functions
     private func setupUI(){
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(handleAdd))
-        
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(handleAdd)),
+                                              UIBarButtonItem(title: "Re-Order", style: .plain, target: self, action: #selector(handleReOrder))]
         if let taskName = currentDailyTask?.name {
             navigationItem.title = taskName
         }
     }
+    
+    @objc private func handleReOrder(){
+        changeDirection = !changeDirection
+    }
+    
     
     @objc private func handleAdd(){
         print("Add selected")
@@ -32,6 +38,12 @@ class ComponentViewController:UITableViewController, CreateComponentViewControll
         let myNavController = UINavigationController(rootViewController: myCreateComponentViewController)
         present(myNavController, animated: true)
     }
+    
+    
+//    @objc private func handleAdd(){
+//        self.navigationItem.rightBarButtonItem = self.editButtonItem
+//    }
+//
     
     @objc private func handleCancel(){
         navigationController?.popViewController(animated: true)
@@ -53,13 +65,7 @@ class ComponentViewController:UITableViewController, CreateComponentViewControll
 //            print("Error fetching data \(err)")
 //        }
 
-        
         componentList = currentDailyTask?.linkComponent?.allObjects as! [Component]
-        
-        
-        
-        
-        
         self.tableView.register(DailyTaskCell.self, forCellReuseIdentifier: "MyCompanyCell")
     }
 }

@@ -70,6 +70,8 @@ class CreateComponentViewController:UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "CANCEL", style: .plain, target: self, action: #selector(handleCancel))
         navigationItem.title = component == nil ? "Create Component" : component?.name
     }
+
+
     
     @objc private func handleAddOrSave(){
         if component == nil {
@@ -88,13 +90,13 @@ class CreateComponentViewController:UIViewController {
         } else {
             component?.name = nameTextField.text
             let context = CoreDataManager.shared.persistentContainer.viewContext
-            
+
             do {
                 try context.save()
             } catch let saveErr {
                 print("Error save edits to Components to CoreData \(saveErr)")
             }
-            
+
             self.dismiss(animated: true) {
                 self.delegate?.didEditComponent(myComponent: self.component!)
             }
