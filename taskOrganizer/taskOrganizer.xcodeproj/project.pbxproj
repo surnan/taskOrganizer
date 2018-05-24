@@ -10,13 +10,14 @@
 		843CADF920AAF8B00087C46A /* ComponentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CADF820AAF8B00087C46A /* ComponentCell.swift */; };
 		8441DEF3208D54BF00741FC3 /* DummyTaskStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441DEF2208D54BF00741FC3 /* DummyTaskStruct.swift */; };
 		8441DEF520901A7C00741FC3 /* coreDataFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441DEF420901A7C00741FC3 /* coreDataFunctions.swift */; };
-		844589B7209FC42600FEBE82 /* DailyTask + Operator Override.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844589B6209FC42600FEBE82 /* DailyTask + Operator Override.swift */; };
+		844589B7209FC42600FEBE82 /* DailyTask+Operator_Override.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844589B6209FC42600FEBE82 /* DailyTask+Operator_Override.swift */; };
 		844589B920A1352E00FEBE82 /* ComponentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844589B820A1352E00FEBE82 /* ComponentViewController.swift */; };
 		84552A57207EFCAE00CE87D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84552A56207EFCAE00CE87D0 /* AppDelegate.swift */; };
 		84552A5E207EFCAE00CE87D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84552A5D207EFCAE00CE87D0 /* Assets.xcassets */; };
 		84552A61207EFCAE00CE87D0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84552A5F207EFCAE00CE87D0 /* LaunchScreen.storyboard */; };
 		84552A69207EFD2E00CE87D0 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84552A68207EFD2E00CE87D0 /* FirstViewController.swift */; };
 		84552A6C207F0CD400CE87D0 /* CreateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84552A6B207F0CD400CE87D0 /* CreateTaskViewController.swift */; };
+		846C253B20B7426600DFF667 /* Component+Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C253A20B7426600DFF667 /* Component+Functions.swift */; };
 		84D9C59A2086C9EE0072EEED /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D9C5992086C9EE0072EEED /* SettingsViewController.swift */; };
 		84D9C59C208821680072EEED /* UIColor+theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D9C59B208821680072EEED /* UIColor+theme.swift */; };
 		84D9C59E208824BA0072EEED /* UINavigationController_Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D9C59D208824BA0072EEED /* UINavigationController_Ext.swift */; };
@@ -34,7 +35,7 @@
 		843CADF820AAF8B00087C46A /* ComponentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentCell.swift; sourceTree = "<group>"; };
 		8441DEF2208D54BF00741FC3 /* DummyTaskStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyTaskStruct.swift; sourceTree = "<group>"; };
 		8441DEF420901A7C00741FC3 /* coreDataFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = coreDataFunctions.swift; sourceTree = "<group>"; };
-		844589B6209FC42600FEBE82 /* DailyTask + Operator Override.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DailyTask + Operator Override.swift"; sourceTree = "<group>"; };
+		844589B6209FC42600FEBE82 /* DailyTask+Operator_Override.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DailyTask+Operator_Override.swift"; sourceTree = "<group>"; };
 		844589B820A1352E00FEBE82 /* ComponentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentViewController.swift; sourceTree = "<group>"; };
 		84552A53207EFCAE00CE87D0 /* taskOrganizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = taskOrganizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84552A56207EFCAE00CE87D0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +44,7 @@
 		84552A62207EFCAE00CE87D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84552A68207EFD2E00CE87D0 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		84552A6B207F0CD400CE87D0 /* CreateTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskViewController.swift; sourceTree = "<group>"; };
+		846C253A20B7426600DFF667 /* Component+Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Component+Functions.swift"; sourceTree = "<group>"; };
 		84D9C5992086C9EE0072EEED /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		84D9C59B208821680072EEED /* UIColor+theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+theme.swift"; sourceTree = "<group>"; };
 		84D9C59D208824BA0072EEED /* UINavigationController_Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationController_Ext.swift; sourceTree = "<group>"; };
@@ -120,7 +122,8 @@
 			children = (
 				84D9C59F208826280072EEED /* DailyTaskDefinitionFile.xcdatamodeld */,
 				8441DEF420901A7C00741FC3 /* coreDataFunctions.swift */,
-				844589B6209FC42600FEBE82 /* DailyTask + Operator Override.swift */,
+				844589B6209FC42600FEBE82 /* DailyTask+Operator_Override.swift */,
+				846C253A20B7426600DFF667 /* Component+Functions.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -238,7 +241,7 @@
 				843CADF920AAF8B00087C46A /* ComponentCell.swift in Sources */,
 				84E27B8B20A8A4C300B39805 /* ComponentViewController+CreateComponentViewControllerDelegate.swift in Sources */,
 				8441DEF520901A7C00741FC3 /* coreDataFunctions.swift in Sources */,
-				844589B7209FC42600FEBE82 /* DailyTask + Operator Override.swift in Sources */,
+				844589B7209FC42600FEBE82 /* DailyTask+Operator_Override.swift in Sources */,
 				84E27B8020A51BC000B39805 /* FirstViewController+CreateTaskViewControllerDelegate.swift in Sources */,
 				84E27B8920A8943900B39805 /* ComponentViewController+UITableView.swift in Sources */,
 				84552A57207EFCAE00CE87D0 /* AppDelegate.swift in Sources */,
@@ -246,6 +249,7 @@
 				84E27B8420A7938E00B39805 /* Helper_Functions.swift in Sources */,
 				8441DEF3208D54BF00741FC3 /* DummyTaskStruct.swift in Sources */,
 				84D9C5A1208826280072EEED /* DailyTaskDefinitionFile.xcdatamodeld in Sources */,
+				846C253B20B7426600DFF667 /* Component+Functions.swift in Sources */,
 				84E27B8220A7797500B39805 /* CreateComponentViewController.swift in Sources */,
 				844589B920A1352E00FEBE82 /* ComponentViewController.swift in Sources */,
 				84D9C59C208821680072EEED /* UIColor+theme.swift in Sources */,

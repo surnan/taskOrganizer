@@ -66,6 +66,7 @@ class CreateTaskViewController: UIViewController {
             tempTask.setValue(nameTextField.text!, forKey: "name")
             tempTask.setValue(true, forKey: "completed")
             tempTask.setValue(dateField.date, forKey: "time")
+            tempTask.setValue(0, forKey: "componentCount")
             do {
                 try context.save()
                 dismiss(animated: true) {
